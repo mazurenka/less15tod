@@ -23,6 +23,7 @@ type PropsType = {
 }
 
 export const Todolist = React.memo(function (props: PropsType) {
+    debugger
     console.log('Todolist called')
 
     const addTask = useCallback((title: string) => {
@@ -42,6 +43,7 @@ export const Todolist = React.memo(function (props: PropsType) {
 
 
     let tasksForTodolist = props.tasks
+    debugger
 
     if (props.filter === 'active') {
         tasksForTodolist = props.tasks.filter(t => t.status === TaskStatuses.New)
