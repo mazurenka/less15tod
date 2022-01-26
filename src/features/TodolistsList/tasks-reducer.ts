@@ -48,6 +48,7 @@ export const setTasksAC = (tasks: Array<TaskType>, todolistId: string) =>
     ({type: 'SET-TASKS', tasks, todolistId} as const)
 
 // thunks
+
 export const fetchTasksTC = (todolistId: string) => (dispatch: Dispatch<ActionsType>) => {
     todolistsAPI.getTasks(todolistId)
         .then((res) => {

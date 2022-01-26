@@ -1,5 +1,5 @@
 import {v1} from 'uuid';
-import {TodolistType} from '../api/todolists-api'
+import {todolistsAPI, TodolistType} from '../api/todolists-api'
 import {Dispatch} from "redux";
 import {AppRootStateType} from "./store";
 
@@ -100,7 +100,13 @@ export type SetTodosActionType = ReturnType<typeof setTodosAC>
 // THUNK
 
 export const setTodosThunk = (dispatch: Dispatch, getState: () => AppRootStateType) => {
-
+    // side effects
+    let promise = todolistsAPI.getTodolists()
+    promise.then((res) => {
+        let todos = res.data
+        // dispatch action (thunk)
+        dispatch(setTodosAC(todos))
+    })
 }
 
 

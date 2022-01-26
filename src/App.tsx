@@ -9,7 +9,7 @@ import {
     changeTodolistFilterAC,
     changeTodolistTitleAC,
     FilterValuesType,
-    removeTodolistAC, setTodosAC,
+    removeTodolistAC, setTodosAC, setTodosThunk,
     TodolistDomainType
 } from './state/todolists-reducer'
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from './state/tasks-reducer';
@@ -23,12 +23,8 @@ export type TasksStateType = {
 
 function App() {
 
-    useEffect( () => {
-        let promise = todolistsAPI.getTodolists()
-        promise.then( (res) => {
-            let todos = res.data
-            dispatch(setTodosAC(todos))
-        })
+    useEffect(() => {
+        dispatch(setTodosThunk)
     }, [])
 
     const todolists = useSelector<AppRootStateType, Array<TodolistDomainType>>(state => state.todolists)
